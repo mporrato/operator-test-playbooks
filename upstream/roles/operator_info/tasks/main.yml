@@ -71,6 +71,10 @@
         oi_auto_label_error_msg: ""
         oi_failed_label_error_msg: ""
 
+    - name: "Limit total amount of operators"
+      set_fact:
+        operators: "{{ operators.split(',')[:op_info_max_operators] | join(',') }}"
+
     - name: "Loop over operators"
       include_tasks: op_info.yml
       loop: "{{ operators.split(',') }}"
